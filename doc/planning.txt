@@ -1,0 +1,25 @@
+1. perso qui court sur place
+2. tirer + commandes
+	coup par coup
+	commandes style 6 touches
+	munitions infinies
+3. trou noir
+4. spawn des ennemis
+	blocs fragiles (plaque de métal)
+	blocs indestructibles
+		fixés au sol/plafond ou pas
+	monstres
+
+------------------------------------------ DIMANCHE -----------------------------------
+5. bonus
+	swap color sur les ennemis qui ont des bonus
+6. porte + bouton
+	portes destructibles avec bonus
+. augmentation de la difficulté au fur et à mesure
+	vitesse du bg ?
+	vitesse des ennemis
+	fréquence des ennemis
+. trou noir qui sort de l'écran, background qui accélère et recule (perso fixe)
+. munitions limitées / recharges
+. swap color sur les ennemis plus résistants
+------------------------------------------ DIMANCHE 22h -------------------------------

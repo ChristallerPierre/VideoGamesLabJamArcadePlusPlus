@@ -1,0 +1,36 @@
+gameplay
+	runner 2D
+	shooter ?
+	les deux en même temps ?
+		tirer dans le sol pour se soulever
+			fusil (laser) à charge ?
+			temps court de rechargement (fusil à pompe)
+		pas de bouton de saut
+		grappin
+		scrolling auto
+		ennemi qui te poursuit et te rattrape quand tu prends des obstacles ou des ennemis
+		météorites qui tombent, tirer en l'air pour les détruire
+		ennemis volants
+		ennemis rampants -> lézards, vers
+		0 gravité, tirs pour te déplacer
+			tirs devant toi te ralentissent
+			tirs derrière t'accélèrent pour éviter monstre
+		munitions infinies
+			peu de déplacement par tir mais fréquence de tir élevée
+			élan gardé
+			déplacement fluide
+			pas de temps de recharge ou temps assez court, régulier (toutes les 50 balles)
+	commandes
+		score
+			ennemis tués + distance parcourue
+			3 vies
+		directions de tir : haut bas droite diagonales
+DA
+	vaisseau style metroid
+		fuite d'une station / planète
+	boutons qui ouvrent des portes
+	défoncer des portes
+		lesquelles dépend du matériau des portes ou des bonus
+	bonus à ramasser
+	pas d'animation -> personnage qui clignote quand touché
+	couloir
