@@ -96,3 +96,6 @@ func read_input():
 	if Input.is_action_pressed("ui_up"):
 		new_velocity.y -= player_speed
 	return new_velocity
+	
+func start(position):
+	self.position=position
