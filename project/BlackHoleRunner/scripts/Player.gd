@@ -1,6 +1,7 @@
 extends Area2D
 
 const width = 75
+const monster_hit = 100
 const right = "right"
 const left = "left"
 const up = "up"
@@ -65,7 +66,8 @@ func is_velocity_changed(new_velocity):
 		if velocity.y > max_velocity:
 			velocity.y = max_velocity
 		
-		velocity.x -= gravity_constant
+		if direction != left:
+			velocity.x -= gravity_constant
 		return true
 	return false
 
@@ -73,6 +75,12 @@ func move_player(delta):
 	if velocity.length() <= 0:
 		pass	
 	position += velocity * delta
+	fit_position_to_screen()
+	
+func fit_position_to_screen():
+	var screen_size = get_viewport_rect().size
+	position.x = clamp(position.x, 0, screen_size.x)
+	position.y = clamp(position.y, 0, screen_size.y)
 
 # don't call this until animations are implemented
 func animate_sprite():
@@ -113,5 +121,4 @@ func read_input():
 	return new_velocity
 
 func _on_Player_body_entered(body):
-	hide()  # Player disappears after being hit.
-	emit_signal("hit")
+	velocity.x -= monster_hit
