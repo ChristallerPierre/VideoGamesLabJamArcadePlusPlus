@@ -11,5 +11,7 @@ script = ExtResource( 2 )
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
 
 [node name="Sprite" type="Sprite" parent="ParallaxLayer"]
+position = Vector2( 51.4822, 30.2811 )
+scale = Vector2( 1.60257, 0.933784 )
 z_index = -1
 texture = ExtResource( 1 )
