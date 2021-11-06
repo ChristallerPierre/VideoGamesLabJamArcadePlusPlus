@@ -113,3 +113,6 @@ func read_input():
 		new_velocity.y += player_speed
 		direction = down
 	return new_velocity
+	
+func start(position):
+	self.position=position
