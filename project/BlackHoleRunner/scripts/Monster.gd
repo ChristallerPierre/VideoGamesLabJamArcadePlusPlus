@@ -11,4 +11,6 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 
 func _on_Monster_body_entered(body):
-	print("mob touche")
+	print("mob touché")
+	hide()
+	pass # Replace with function body.

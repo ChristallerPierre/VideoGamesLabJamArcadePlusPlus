@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends Area2D
 
 const width = 75
 const right = "right"
@@ -65,12 +65,12 @@ func is_velocity_changed(new_velocity):
 		return true
 	return false
 
-func move_player(_delta):
+func move_player(delta):
 	if velocity.length() <= 0:
 		pass
 	
-	move_and_slide(velocity)
-#	position += velocity * delta
+	#move_and_slide(velocity)
+	position += velocity * delta
 	
 	var screen_size = get_viewport_rect().size
 	position.x = clamp(position.x, 0, screen_size.x)
