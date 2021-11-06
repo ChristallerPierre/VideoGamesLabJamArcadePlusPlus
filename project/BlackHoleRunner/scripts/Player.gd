@@ -12,6 +12,7 @@ var shot_timer
 # from x to 0, decremented by (shot_timer_increment*delta) each frame
 var default_shot_timer = 1
 var shot_timer_increment = 3
+export var gravity_constant = 25
 export var max_velocity = 100
 export var velocity = Vector2()
 export (PackedScene) var BulletScene
@@ -21,6 +22,7 @@ export onready var gunPosition = $GunPosition
 func _ready():
 	position = OS.get_real_window_size() / 2
 	shot_timer = 0
+	velocity.x -= gravity_constant
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -62,20 +64,15 @@ func is_velocity_changed(new_velocity):
 			velocity.x = max_velocity
 		if velocity.y > max_velocity:
 			velocity.y = max_velocity
+		
+		velocity.x -= gravity_constant
 		return true
 	return false
 
 func move_player(delta):
 	if velocity.length() <= 0:
-		pass
-	
-	#move_and_slide(velocity)
+		pass	
 	position += velocity * delta
-	
-	var screen_size = get_viewport_rect().size
-	position.x = clamp(position.x, 0, screen_size.x)
-	position.y = clamp(position.y, 0, screen_size.y)
-	pass
 
 # don't call this until animations are implemented
 func animate_sprite():
@@ -114,10 +111,6 @@ func read_input():
 		new_velocity.y += player_speed
 		direction = down
 	return new_velocity
-	
-func start(position):
-	self.position=position
-
 
 func _on_Player_body_entered(body):
 	hide()  # Player disappears after being hit.

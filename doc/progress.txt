@@ -1,0 +1,16 @@
+ajouter trou noir
+physique monstre
+	empêcher monstres de sortir de l'écran
+	faire spawn moins de monstres
+	faire spawn des monstres de taille variée
+physique joueur
+	ajouter une légère attraction constante quand vecteur y = 0
+ajouter affichage score
+ajouter affiche game over
+ajouter du son
+faire défiler background
+
+défauts mineurs :
+- balles traversent les ennemis
+- balles suivent le joueur
+- joueur se déplace légèrement plus vite vers la gauche et vers le haut
