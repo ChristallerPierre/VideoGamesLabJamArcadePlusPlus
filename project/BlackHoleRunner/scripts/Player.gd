@@ -1,14 +1,14 @@
 extends Area2D
 
-const bulletScene = preload("res://scenes/BulletScene.tscn")
-
 var player_speed = 50
 var shot_timer
 # x to 0, decremented by shot_timer_increment*delta each frame
 var default_shot_timer = 1
 var shot_timer_increment = 3
-
 export var velocity = Vector2()
+export (PackedScene) var BulletScene
+
+onready var gunPosition = $GunPosition
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,11 +31,14 @@ func check_for_input(delta):
 	pass
 
 func shoot():
-	var bullet = bulletScene.instance()
-	bullet.velocity = velocity
+#	var bullet = BulletScene.instance()
+#	bullet.global_position = gunPosition.global_position
+#	bullet.set_direction(velocity)
+#	bullet.velocity = velocity
 #	bullet.init(velocity)
-#try later #get_parent().add_child(bullet)
-	add_child_below_node(get_tree().get_root().get_node("MainNode"),bullet)
+#	add_child(bullet)
+#	add_child_below_node(get_tree().get_root().get_node("MainNode"),bullet)
+	pass
 
 func is_velocity_changed(new_velocity):
 	if new_velocity != Vector2():

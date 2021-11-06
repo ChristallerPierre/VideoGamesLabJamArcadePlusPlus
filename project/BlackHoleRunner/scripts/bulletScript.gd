@@ -1,17 +1,15 @@
 extends KinematicBody2D
 
-export var velocity = Vector2()
+export (int) var speed = 300
+var direction := Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
 
 func _physics_process(_delta):
-	move_and_slide(velocity)
+	if direction != Vector2.ZERO:
+		move_and_slide(direction * speed)
 
-func init(new_velocity):
-	velocity = new_velocity
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func set_direction(new: Vector2):
+	direction = new
