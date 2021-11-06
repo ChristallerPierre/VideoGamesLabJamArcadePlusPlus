@@ -6,6 +6,7 @@ const left = "left"
 const up = "up"
 const down = "down"
 var direction = right
+signal hit
 var player_speed = 50
 var shot_timer
 # from x to 0, decremented by (shot_timer_increment*delta) each frame
@@ -116,3 +117,8 @@ func read_input():
 	
 func start(position):
 	self.position=position
+
+
+func _on_Player_body_entered(body):
+	hide()  # Player disappears after being hit.
+	emit_signal("hit")
