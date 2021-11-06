@@ -1,15 +1,13 @@
 extends Area2D
 
+const bulletScene = preload("res://scenes/BulletScene.tscn")
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-#Vector2 vector = null
 var player_speed = 50
 var shot_timer
 # x to 0, decremented by shot_timer_increment*delta each frame
 var default_shot_timer = 1
 var shot_timer_increment = 3
+
 export var velocity = Vector2()
 
 # Called when the node enters the scene tree for the first time.
@@ -27,13 +25,20 @@ func _process(delta):
 func check_for_input(delta):
 	if is_shot_ready(delta):
 		var new_velocity = read_input()
-		if is_velocity_changed(velocity, new_velocity):
+		if is_velocity_changed(new_velocity):
 			shot_timer = default_shot_timer
+			shoot()
 	pass
 
-func is_velocity_changed(old_velocity, new_velocity):
+func shoot():
+	var bullet = bulletScene.instance()
+	bullet.velocity = velocity
+#	bullet.init(velocity)
+#try later #get_parent().add_child(bullet)
+	add_child_below_node(get_tree().get_root().get_node("MainNode"),bullet)
+
+func is_velocity_changed(new_velocity):
 	if new_velocity != Vector2():
-#		if new_velocity.x != 0 :
 		velocity += new_velocity
 		return true
 	return false
@@ -42,7 +47,6 @@ func move_player(delta):
 	if velocity.length() <= 0:
 		pass
 	
-#	velocity = velocity * player_speed
 	position += velocity * delta
 	
 	var screen_size = get_viewport_rect().size
@@ -51,7 +55,7 @@ func move_player(delta):
 	pass
 
 # don't call this until animations are implemented
-func animate_sprite(velocity):
+func animate_sprite():
 	if velocity.length > 0:
 		$AnimatedSprite.play()
 	else:
@@ -72,13 +76,13 @@ func is_shot_ready(delta):
 	return true
 
 func read_input():
-	var velocity = Vector2()  # The player's movement vector.
+	var new_velocity = Vector2()  # The player's movement vector.
 	if Input.is_action_pressed("ui_right"):
-		velocity.x += player_speed
+		new_velocity.x += player_speed
 	if Input.is_action_pressed("ui_left"):
-		velocity.x -= player_speed
+		new_velocity.x -= player_speed
 	if Input.is_action_pressed("ui_down"):
-		velocity.y += player_speed
+		new_velocity.y += player_speed
 	if Input.is_action_pressed("ui_up"):
-		velocity.y -= player_speed
-	return velocity
+		new_velocity.y -= player_speed
+	return new_velocity
