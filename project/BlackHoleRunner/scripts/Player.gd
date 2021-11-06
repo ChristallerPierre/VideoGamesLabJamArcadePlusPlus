@@ -1,20 +1,24 @@
-extends Area2D
+extends KinematicBody2D
 
+const width = 75
+const right = "right"
+const left = "left"
+const up = "up"
+const down = "down"
+var direction = right
 var player_speed = 50
 var shot_timer
-# x to 0, decremented by shot_timer_increment*delta each frame
+# from x to 0, decremented by (shot_timer_increment*delta) each frame
 var default_shot_timer = 1
 var shot_timer_increment = 3
 export var max_velocity = 100
 export var velocity = Vector2()
 export (PackedScene) var BulletScene
-
-onready var gunPosition = $GunPosition
-onready var spritePosition = $Sprite
+export onready var gunPosition = $GunPosition
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.position = OS.get_real_window_size() / 2
+	position = OS.get_real_window_size() / 2
 	shot_timer = 0
 	pass # Replace with function body.
 
@@ -34,11 +38,18 @@ func check_for_input(delta):
 
 func shoot():
 	var bullet = BulletScene.instance()
+	
+	if direction == right:
+		bullet.position.x += width
+	elif direction == left:
+		bullet.position.x -= width
+	if direction == up:
+		bullet.position.y += width
+	elif direction == down:
+		bullet.position.y -= width
+	
 #	bullet.global_position = gunPosition.global_position
-	bullet.global_position = spritePosition.global_position
-	bullet.set_direction(velocity)
-#	bullet.velocity = velocity
-#	bullet.init(velocity)
+	bullet.set_direction(direction)
 	add_child(bullet)
 #	add_child_below_node(get_tree().get_root().get_node("MainNode"),bullet)
 	pass
@@ -53,11 +64,12 @@ func is_velocity_changed(new_velocity):
 		return true
 	return false
 
-func move_player(delta):
+func move_player(_delta):
 	if velocity.length() <= 0:
 		pass
 	
-	position += velocity * delta
+	move_and_slide(velocity)
+#	position += velocity * delta
 	
 	var screen_size = get_viewport_rect().size
 	position.x = clamp(position.x, 0, screen_size.x)
@@ -85,14 +97,19 @@ func is_shot_ready(delta):
 		return false
 	return true
 
+# no diagonal movement yet
 func read_input():
-	var new_velocity = Vector2()  # The player's movement vector.
+	var new_velocity = Vector2()
 	if Input.is_action_pressed("ui_right"):
-		new_velocity.x += player_speed
-	if Input.is_action_pressed("ui_left"):
 		new_velocity.x -= player_speed
+		direction = right
+	if Input.is_action_pressed("ui_left"):
+		new_velocity.x += player_speed
+		direction = left
 	if Input.is_action_pressed("ui_down"):
-		new_velocity.y += player_speed
-	if Input.is_action_pressed("ui_up"):
 		new_velocity.y -= player_speed
+		direction = up
+	if Input.is_action_pressed("ui_up"):
+		new_velocity.y += player_speed
+		direction = down
 	return new_velocity
