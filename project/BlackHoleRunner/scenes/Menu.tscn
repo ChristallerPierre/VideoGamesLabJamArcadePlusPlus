@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/Menu.gd" type="Script" id=1]
+[ext_resource path="res://assets/DrawnAssets/Background/Space.png" type="Texture" id=2]
+[ext_resource path="res://assets/DrawnAssets/BlackHole/BlackHole.png" type="Texture" id=3]
+
+[sub_resource type="Theme" id=1]
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -282.0
+margin_top = -150.0
+margin_right = 283.0
+margin_bottom = -87.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="Button" parent="VBoxContainer"]
+margin_right = 565.0
+margin_bottom = 20.0
+text = "Start"
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 1.33496, -1.33484 )
+z_index = -3
+texture = ExtResource( 2 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( -253, 303 )
+scale = Vector2( 2.8822, 2.8396 )
+z_index = -3
+texture = ExtResource( 3 )
+offset = Vector2( 5.55133, 24.2992 )
+
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_Start_pressed"]
