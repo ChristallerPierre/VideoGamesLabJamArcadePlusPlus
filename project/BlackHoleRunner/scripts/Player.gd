@@ -1,19 +1,19 @@
 extends Area2D
 
 const width = 75
-const monster_hit = 100
+const velocity_malus_on_monster_hit = Vector2(-300, 0)
 const right = "right"
 const left = "left"
 const up = "up"
 const down = "down"
 var direction = right
-var player_speed = 50
+var velocity_increment_per_shot = 50
 var shot_timer
 # from x to 0, decremented by (shot_timer_increment*delta) each frame
 var default_shot_timer = 1
 var shot_timer_increment = 3
 export var gravity_constant = 25
-export var max_velocity = 100
+export var max_velocity = 250
 export var velocity = Vector2()
 export (PackedScene) var BulletScene
 export onready var gunPosition = $GunPosition
@@ -65,7 +65,9 @@ func is_velocity_changed(new_velocity):
 		if velocity.y > max_velocity:
 			velocity.y = max_velocity
 		
-		if direction != left:
+		# black hole attracts a little bit. 
+		# Not set when moving left/right to make the movement 
+		if direction != left && direction != right:
 			velocity.x -= gravity_constant
 		return true
 	return false
@@ -106,19 +108,19 @@ func is_shot_ready(delta):
 func read_input():
 	var new_velocity = Vector2()
 	if Input.is_action_pressed("ui_right"):
-		new_velocity.x -= player_speed
+		new_velocity.x -= velocity_increment_per_shot
 		direction = right
 	if Input.is_action_pressed("ui_left"):
-		new_velocity.x += player_speed
+		new_velocity.x += velocity_increment_per_shot
 		direction = left
 	if Input.is_action_pressed("ui_down"):
-		new_velocity.y -= player_speed
+		new_velocity.y -= velocity_increment_per_shot
 		direction = up
 	if Input.is_action_pressed("ui_up"):
-		new_velocity.y += player_speed
+		new_velocity.y += velocity_increment_per_shot
 		direction = down
 	return new_velocity
 
 func _on_Player_body_entered(_body):
-	print("toucher par un mob")
-	velocity.x -= monster_hit
+	print("on_player_body_entered")
+	velocity = velocity_malus_on_monster_hit
