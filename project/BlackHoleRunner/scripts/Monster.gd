@@ -10,6 +10,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 
 func _on_Monster_body_entered(_body):
-	print("on_monster_body_entered")
+	print("mob tué")
+	self.remove_and_skip()
 	hide()
 	pass # Replace with function body.
