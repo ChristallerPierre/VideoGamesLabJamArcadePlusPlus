@@ -9,7 +9,7 @@ func _ready():
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 
-func _on_Monster_body_entered(body):
+func _on_Monster_body_entered(_body):
 	print("mob tué")
 	hide()
-	pass # Replace with function body.
+	# increment score
