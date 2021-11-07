@@ -1,6 +1,7 @@
 extends Control
 
 func _ready():
+	MusiqueController.play_music()
 	pass # Replace with function body.
 func _process(delta):
 	$BlackHole.rotation_degrees += delta*20

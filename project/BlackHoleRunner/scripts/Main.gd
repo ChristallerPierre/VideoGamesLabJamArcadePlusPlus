@@ -1,5 +1,7 @@
 extends Node
 
+const min_mob_timer = 0.5
+const mob_timer_decrement = 0.05
 const base_score = "Score : "
 const text_r_to_reload = "\nAppuyez sur R pour recommencer une partie."
 const reload_input = "reload"
@@ -18,6 +20,7 @@ func game_over():
 	draw_game_over()
 	$Score.text = ""
 	$Player.hide()
+	# remove every remaining mob
 
 func _input(event):
 	if event.is_action_pressed(reload_input) && game_over:
@@ -61,6 +64,8 @@ func _on_MobTimer_timeout():
 	# Set the velocity (speed & direction).
 	mob.linear_velocity = Vector2(rand_range(mob.min_speed, mob.max_speed), 0)
 	mob.linear_velocity = mob.linear_velocity.rotated(direction)
+	if $MobTimer.wait_time > min_mob_timer:
+		$MobTimer.wait_time -= mob_timer_decrement
 
 func draw_game_over():
 	var text = base_score + str(score) + text_r_to_reload
