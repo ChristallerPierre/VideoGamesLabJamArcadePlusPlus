@@ -28,3 +28,5 @@ func set_direction(direction):
 	elif direction == down:
 		direction_y = -1
 	velocity = Vector2(direction_x, direction_y) * speed
+	if direction == up || direction == down:
+		$CollisionShape2D.rotation_degrees = 90
