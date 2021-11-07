@@ -19,7 +19,7 @@ Mob = ExtResource( 1 )
 position = Vector2( 613.518, 283.162 )
 
 [node name="MobTimer" type="Timer" parent="."]
-wait_time = 0.75
+wait_time = 1.25
 
 [node name="ScoreTimer" type="Timer" parent="."]
 
@@ -37,6 +37,13 @@ rotation = -1.57081
 [node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
 
 [node name="RigidBody2D" parent="." instance=ExtResource( 5 )]
+
+[node name="Score" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]

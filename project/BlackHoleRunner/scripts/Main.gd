@@ -1,10 +1,14 @@
 extends Node
 
+const base_score = "Score "
 export (PackedScene) var Mob
-var score
+export var score = 0
 
 func _ready():
 	randomize()
+	var window_dimensions = OS.get_real_window_size()
+	$Score.rect_position.x = window_dimensions.x / 2 - 50
+	$Score.rect_position.y = 50
 	new_game()
 
 func game_over():
@@ -21,6 +25,7 @@ func _on_StartTimer_timeout():
 
 func _on_ScoreTimer_timeout():
 	score += 1
+	draw_score()
 	
 func _on_MobTimer_timeout():
 	# reposition the spawner to the window
@@ -42,10 +47,11 @@ func _on_MobTimer_timeout():
 	mob.linear_velocity = Vector2(rand_range(mob.min_speed, mob.max_speed), 0)
 	mob.linear_velocity = mob.linear_velocity.rotated(direction)
 
-
-
+func draw_score():
+	var text = base_score + str(score)
+	$Score.text = text
+	return text
 
 func _on_RigidBody2D_game_over():
-	print("game over")
+	print("game over. score : " + draw_score())
 	game_over()
-	pass # Replace with function body.

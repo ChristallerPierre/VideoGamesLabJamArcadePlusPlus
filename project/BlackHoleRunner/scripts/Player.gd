@@ -1,7 +1,7 @@
 extends Area2D
 
 const width = 75
-const monster_hit = 100
+const velocity_on_monster_hit = Vector2(-300, 0)
 const right = "right"
 const left = "left"
 const up = "up"
@@ -13,7 +13,7 @@ var shot_timer
 var default_shot_timer = 1
 var shot_timer_increment = 3
 export var gravity_constant = 25
-export var max_velocity = 100
+export var max_velocity = 150
 export var velocity = Vector2()
 export (PackedScene) var BulletScene
 export onready var gunPosition = $GunPosition
@@ -25,7 +25,6 @@ var downrightSprite = load("res://assets/DrawnAssets/Player/PlayerV1DownRight.pn
 var leftSprite = load("res://assets/DrawnAssets/Player/PlayerV1Left.png")
 var rightSprite = load("res://assets/DrawnAssets/Player/PlayerV1right.png")
 var last_sprite = rightSprite
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -75,7 +74,9 @@ func is_velocity_changed(new_velocity):
 		if velocity.y > max_velocity:
 			velocity.y = max_velocity
 		
-		if direction != left:
+		if direction == up || direction == down:
+			velocity.x -= gravity_constant
+		if velocity.x == 0:
 			velocity.x -= gravity_constant
 		return true
 	return false
@@ -129,9 +130,10 @@ func read_input():
 		direction = down
 	return new_velocity
 
-func _on_Player_body_entered(_body):
-	print("toucher par un mob")
-	velocity.x -= monster_hit
+func _on_Player_body_entered(body):
+	print("touché par un mob")
+	velocity = velocity_on_monster_hit
+	body.destroy()
 	
 func setAccordedSprite():
 	if direction == down:
