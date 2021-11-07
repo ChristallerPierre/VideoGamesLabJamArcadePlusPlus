@@ -1,10 +1,72 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/Monster.gd" type="Script" id=1]
 [ext_resource path="res://assets/DrawnAssets/Ennemies/Asteroids.png" type="Texture" id=2]
+[ext_resource path="res://assets/DrawnAssets/Ennemies/9.png" type="Texture" id=3]
+[ext_resource path="res://assets/DrawnAssets/Ennemies/8.png" type="Texture" id=4]
+[ext_resource path="res://assets/DrawnAssets/Ennemies/1.png" type="Texture" id=5]
+[ext_resource path="res://assets/DrawnAssets/Ennemies/2.png" type="Texture" id=6]
+[ext_resource path="res://assets/DrawnAssets/Ennemies/3.png" type="Texture" id=7]
+[ext_resource path="res://assets/DrawnAssets/Ennemies/4.png" type="Texture" id=8]
+[ext_resource path="res://assets/DrawnAssets/Ennemies/5.png" type="Texture" id=9]
+[ext_resource path="res://assets/DrawnAssets/Ennemies/6.png" type="Texture" id=10]
+[ext_resource path="res://assets/DrawnAssets/Ennemies/7.png" type="Texture" id=11]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 85.1469
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "New Anim",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "New Anim 8",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "New Anim 4",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "New Anim 6",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "New Anim 5",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "New Anim 2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "New Anim 3",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "New Anim 1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "New Anim 7",
+"speed": 5.0
+} ]
 
 [node name="Monster" type="RigidBody2D"]
 collision_layer = 6
@@ -16,11 +78,13 @@ script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -100, -100 )
+scale = Vector2( 0.5, 0.5 )
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -100, -100 )
-scale = Vector2( 0.227407, 0.192143 )
-texture = ExtResource( 2 )
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -105, -93 )
+scale = Vector2( 0.2, 0.2 )
+frames = SubResource( 2 )
+animation = "New Anim 8"
 
 [connection signal="body_entered" from="." to="." method="_on_Monster_body_entered"]

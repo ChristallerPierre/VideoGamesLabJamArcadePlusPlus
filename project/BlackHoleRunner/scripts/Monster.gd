@@ -6,7 +6,8 @@ export var max_speed = 250  # Maximum speed range.
 onready var main_node = get_node("/root/Main")
 
 func _ready():
-	pass
+	var mob_types = $AnimatedSprite.frames.get_animation_names()
+	$AnimatedSprite.animation = mob_types[randi() % mob_types.size()]
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
