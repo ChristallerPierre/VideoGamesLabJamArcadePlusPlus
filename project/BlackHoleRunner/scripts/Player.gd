@@ -122,5 +122,5 @@ func read_input():
 	return new_velocity
 
 func _on_Player_body_entered(_body):
-	print("toucher par un mob")
+	print("on_player_body_entered")
 	velocity = velocity_malus_on_monster_hit
