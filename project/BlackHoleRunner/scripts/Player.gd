@@ -7,7 +7,6 @@ const left = "left"
 const up = "up"
 const down = "down"
 var direction = right
-signal hit
 var player_speed = 50
 var shot_timer
 # from x to 0, decremented by (shot_timer_increment*delta) each frame
@@ -120,5 +119,6 @@ func read_input():
 		direction = down
 	return new_velocity
 
-func _on_Player_body_entered(body):
+func _on_Player_body_entered(_body):
+	print("toucher par un mob")
 	velocity.x -= monster_hit

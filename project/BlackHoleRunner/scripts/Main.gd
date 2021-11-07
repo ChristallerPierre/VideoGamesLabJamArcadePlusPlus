@@ -43,6 +43,3 @@ func _on_MobTimer_timeout():
 	mob.linear_velocity = mob.linear_velocity.rotated(direction)
 
 
-func _on_Player_hit():
-	game_over()
-	pass

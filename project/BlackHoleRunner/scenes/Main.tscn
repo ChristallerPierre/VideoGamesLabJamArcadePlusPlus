@@ -35,9 +35,8 @@ rotation = -1.57081
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
 
-[node name="BlackHole" parent="." instance=ExtResource( 5 )]
+[node name="RigidBody2D" parent="." instance=ExtResource( 5 )]
 
-[connection signal="hit" from="Player" to="." method="_on_Player_hit"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]

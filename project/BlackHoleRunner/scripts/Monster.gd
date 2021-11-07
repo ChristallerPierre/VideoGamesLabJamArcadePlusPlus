@@ -12,4 +12,4 @@ func _on_VisibilityNotifier2D_screen_exited():
 func _on_Monster_body_entered(_body):
 	print("mob tué")
 	hide()
-	# increment score
+	pass # Replace with function body.
