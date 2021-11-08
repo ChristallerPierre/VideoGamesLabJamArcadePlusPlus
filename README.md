@@ -1,7 +1,7 @@
 # VideoGamesLabJamArcadePlusPlus
  
 ## Context
-Small video game project for the Game Jam of 2021, of the serie Video Games Lab, by At0mium.
+Small video game project for the week-end-long Game Jam of 2021, of the serie Video Games Lab, by At0mium.
 
 https://itch.io/jam/vgl-game-jam-2021
 
@@ -12,6 +12,8 @@ https://github.com/nitsugua
 
 ## Overview
 The project is called Escape Gravity (play for free here : https://nitsugua.itch.io/escape-gravity)
+
+Made with Godot https://godotengine.org/
 
 The goal is to earn the biggest score. There are 2 ways or earning points :
 - surviving : you gain a small amount of points per second alive
@@ -26,6 +28,7 @@ The game ends whenever you touch the black hole on the left side of the screen. 
 BSD License 2.0
 
 The bgm is Time machine, owned by Waterflam. All rights reserved.
+The rest of the assets were made by us in the timeframe of the Game Jam.
 
 https://www.waterflame.com/contact-info
 
